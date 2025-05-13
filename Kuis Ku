@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edukasi Interaktif: Makanan Burung Kakaktua, Macaw & Pelikan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins :wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff176 0%, #81c784 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #2e7d32;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      margin: 1.5rem;
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    .bird-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .bird-card {
+      background: #e8f5e9;
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      border: 2px solid #a5d6a7;
+    }
+
+    .bird-icon {
+      font-size: 3rem;
+      color: #2e7d32;
+    }
+
+    .quiz-container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border: 2px dashed #81c784;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      min-height: 120px;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background: #e8f5e9;
+    }
+
+    .card img {
+      max-width: 80px;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .correct {
+      border-color: #4caf50 !important;
+      background: #c8e6c9 !important;
+    }
+
+    .incorrect {
+      border-color: #e53935 !important;
+      background: #ffcdd2 !important;
+    }
+
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #a5d6a7;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #1b5e20;
+      display: none;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1.5rem;
+      text-align: center;
+      color: #2e7d32;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🦜🍽️ Makanan Burung Ajaib!</h1>
+    <p style="color: #555;">Pelajari makanan favorit Kakaktua, Macaw & Pelikan secara interaktif!</p>
+  </header>
+
+  <div class="section bird-info">
+    <div class="bird-card">
+      <div class="bird-icon"><i class="fas fa-crow"></i></div>
+      <div>
+        <h2>Kakaktua</h2>
+        <p>Makanan: Biji-bijian, buah-buahan, kacang, dan serangga kecil. Suka mengupas kulit biji dengan paruh kuatnya!</p>
+      </div>
+    </div>
+
+    <div class="bird-card">
+      <div class="bird-icon"><i class="fas fa-dove"></i></div>
+      <div>
+        <h2>Macaw</h2>
+        <p>Makanan: Buah tropis, kacang Brazil, biji-bijian, dan kadang tanah liat untuk menetralisir racun!</p>
+      </div>
+    </div>
+
+    <div class="bird-card">
+      <div class="bird-icon"><i class="fas fa-kiwi-bird"></i></div>
+      <div>
+        <h2>Pelikan</h2>
+        <p>Makanan: Ikan kecil, udang, dan krill. Memiliki kantong besar di mulut untuk menangkap mangsa!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <h2 style="text-align:center; color: #2e7d32;">🎮 Game: Cocokkan Makanan!</h2>
+    <p style="text-align:center;">Seret makanan ke burung yang tepat!</p>
+    
+    <div class="game-grid">
+      <!-- Birds -->
+      <div class="card" id="kakaktua" ondragover="allowDrop(event)" ondrop="drop(event, 'kakaktua')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Cacatua_alba_-Singapore_Zoo.jpg/400px-Cacatua_alba_-Singapore_Zoo.jpg " alt="Kakaktua">
+        <p>Kakaktua</p>
+      </div>
+
+      <div class="card" id="macaw" ondragover="allowDrop(event)" ondrop="drop(event, 'macaw')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hyacinth_Macaw_%28Anodorhynchus_hydrops%29.jpg/400px-Hyacinth_Macaw_%28Anodorhynchus_hydrops%29.jpg " alt="Macaw">
+        <p>Macaw</p>
+      </div>
+
+      <div class="card" id="pelikan" ondragover="allowDrop(event)" ondrop="drop(event, 'pelikan')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Pelican_Patagonia.jpg/400px-Pelican_Patagonia.jpg " alt="Pelikan">
+        <p>Pelikan</p>
+      </div>
+
+      <!-- Foods -->
+      <div class="card" draggable="true" ondragstart="drag(event)" data-answer="kakaktua">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Sunflower_seeds_on_white.jpg/400px-Sunflower_seeds_on_white.jpg " alt="Biji">
+        <p>Biji-bijian</p>
+      </div>
+
+      <div class="card" draggable="true" ondragstart="drag(event)" data-answer="macaw">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Brazil_nut_tree_pod.jpg/400px-Brazil_nut_tree_pod.jpg " alt="Kacang">
+        <p>Kacang Brazil</p>
+      </div>
+
+      <div class="card" draggable="true" ondragstart="drag(event)" data-answer="pelikan">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sardines_in_a_market.jpg/400px-Sardines_in_a_market.jpg " alt="Ikan">
+        <p>Ikan Kecil</p>
+      </div>
+    </div>
+
+    <div class="result-box" id="resultBox"></div>
+    <button style="display:block; margin:1rem auto; padding:0.8rem 1.5rem; background:#2e7d32; color:white; border:none; border-radius:8px; cursor:pointer;" onclick="resetGame()">Reset</button>
+  </div>
+
+  <footer>
+    🌟 Belajar sambil bermain! Edukasi Interaktif oleh BirdLovers © 2023
+  </footer>
+
+  <script>
+    let correctCount = 0;
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.dataset.answer);
+      ev.dataTransfer.setDragImage(ev.target, 0, 0);
+    }
+
+    function drop(ev, bird) {
+      ev.preventDefault();
+      const answer = ev.dataTransfer.getData("text");
+      const foodCard = document.querySelector(`[data-answer="${answer}"]`);
+      
+      if (bird === answer) {
+        foodCard.classList.add("correct");
+        correctCount++;
+      } else {
+        foodCard.classList.add("incorrect");
+      }
+
+      foodCard.style.pointerEvents = "none";
+      checkWin();
+    }
+
+    function checkWin() {
+      if (correctCount === 3) {
+        const resultBox = document.getElementById("resultBox");
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "🎉 Selamat! Kamu berhasil mencocokkan semua makanan dengan benar!";
+      }
+    }
+
+    function resetGame() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.classList.remove("correct", "incorrect");
+        card.style.pointerEvents = "auto";
+      });
+      correctCount = 0;
+      document.getElementById("resultBox").style.display = "none";
+    }
+  </script>
+</body>
+</html>
